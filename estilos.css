@@ -1,0 +1,167 @@
+html {
+  font-size: 100%;
+  font-family: 'Roboto', sans-serif; 
+}
+
+main {
+	background-color: black;
+	background-repeat: no-repeat;
+}
+
+footer {
+	text-align: center;
+	color: white;
+	background-color: #cc6600; 
+}
+
+ul {
+	list-style-type: none; 
+}
+
+/* Header  */
+.header {
+	background-color: #cc6600; 
+}
+
+.header .header__responsive {
+	padding: 0; 
+}
+
+.header .header__responsive button {
+	border: none; 
+}
+
+.header .header__desktop {
+	display: none; 
+}
+
+.header__logo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 70px; 
+}
+
+.menu {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center; 
+}
+
+.menu .menu__enlace {
+	color: white;
+	text-decoration: none; 
+}
+
+.menu .menu__enlace--actual {
+	color: yellow;
+	text-decoration: none; 
+}
+
+/* Desktop */
+@media (min-width: 992px) {
+	/* Header */
+	.header .header__responsive {
+		display: none; 
+	}
+
+	.header .header__desktop {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.header__logo {
+		margin-left: 50px; 
+	}
+
+	.menu {
+		flex-direction: row;
+		justify-content: space-around; 
+		align-items: center;
+		margin-bottom: 0px;
+		margin-right: 30px;
+	}
+
+	.menu li {
+		margin-right: 20px; 
+	} 
+}
+
+/* Home */ 
+.main_home {
+	background-image: url("img/bg2.jpeg");
+	background-size: cover;
+	height: 100vh;
+}
+
+.title_home {
+	color: white;
+	text-align: center;
+	padding-top: 10px;
+}
+
+/* Contador de energía */
+.title_contador {
+	color: white;
+	text-align: center;
+}
+
+.ronda_info {
+	color: white;
+	font-size: 2em;
+	text-align: center;
+}
+
+.contadores {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.contador_energia {
+	color: white;
+	font-size: 2em;
+	text-align: center;
+
+}
+
+.contador_cartas {
+	color: white;
+	font-size: 2em;
+	text-align: center;
+
+}
+
+.siguiente, .nueva {
+	margin-top: 10px;
+}
+
+.apariciones {
+	color: white;
+	display: flex;
+	justify-content: center;
+}
+
+table {
+	margin-top: 20px;
+	margin-bottom: 20px;
+  border-collapse: collapse;
+  width: 60%; 
+}
+
+
+table, td, th {
+  border: 1px solid #ddd;
+  text-align: center; 
+}
+
+th, td {
+  padding: 5px; 
+}
+
+/* Calculadora de daño*/
+.main_calculadora {
+	background-size: cover;
+	height: 100vh;
+}
