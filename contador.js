@@ -75,28 +75,82 @@ class Partida {
 		this.cartas.sumar(CARTAS_POR_RONDA)
 		this.ronda++
 	}
+
+	reiniciar() {
+		this.ronda = 1
+		this.energia = new Energia()
+		this.cartas = new Cartas()
+	}
 }
+
+const partida = new Partida()
 
 const rondaHtml = document.getElementById('ronda')
 const energiaHtml = document.getElementById('energia')
 const cartasHtml = document.getElementById('cartas')
 
-// Simulador de partida
-alert("Nueva partida")
-const partida = new Partida()
+const energiaModificarHtml = document.getElementById('energia-modificar')
+const cartasModificarHtml = document.getElementById('cartas-modificar')
 
-while(true) {
+// Botones 
+
+const btnEnergiaMenos = document.getElementById('btn-energia-menos')
+const btnEnergiaMas = document.getElementById('btn-energia-mas')
+const btnCartasMenos = document.getElementById('btn-cartas-menos')
+const btnCartasMas = document.getElementById('btn-cartas-mas')
+
+const btnSiguiente = document.getElementById('siguiente')
+const btnNueva = document.getElementById('nueva')
+
+// Modificador de energia
+
+btnEnergiaMenos.onclick = () => {
+	let anterior = Number(energiaModificarHtml.innerHTML)
+	energiaModificarHtml.innerHTML = anterior - 1
+}
+
+btnEnergiaMas.onclick = () => {
+	let anterior = Number(energiaModificarHtml.innerHTML)
+	energiaModificarHtml.innerHTML = anterior + 1	
+}
+
+// Modificador de cartas
+
+btnCartasMenos.onclick = () => {
+	let anterior = Number(cartasModificarHtml.innerHTML)
+	cartasModificarHtml.innerHTML = anterior - 1	
+}
+
+btnCartasMas.onclick = () => {
+	let anterior = Number(cartasModificarHtml.innerHTML)
+	cartasModificarHtml.innerHTML = anterior + 1		
+}
+
+// Siguiente ronda
+
+btnSiguiente.onclick = () => {
+	let energia = Number(energiaModificarHtml.innerHTML)
+	let cartas = Number(cartasModificarHtml.innerHTML)
+
+	partida.siguienteRonda(energia, cartas)
+
+	energiaModificarHtml.innerHTML = 0
+	cartasModificarHtml.innerHTML = 0
+
 	rondaHtml.innerHTML = partida.getRonda()
 	energiaHtml.innerHTML = partida.getEnergia()
 	cartasHtml.innerHTML = partida.getCartas()
+}
 
-	alert(`Ronda: ${partida.getRonda()}\nEnergía: ${partida.getEnergia()}\nCartas: ${partida.getCartas()}`)
-	let energia = Number(prompt("Ingrese energía a sumar"))
-	let cartas = Number(prompt("Ingrese cartas a sumar"))
-	partida.siguienteRonda(energia, cartas)
+// Nueva partida
 
-	let terminar = Number(prompt("Ingrese 0 para continuar"))
-	if(terminar != 0) {
-		break
-	}
+btnNueva.onclick = () => {
+	partida.reiniciar()
+
+	energiaModificarHtml.innerHTML = 0
+	cartasModificarHtml.innerHTML = 0
+
+	rondaHtml.innerHTML = partida.getRonda()
+	energiaHtml.innerHTML = partida.getEnergia()
+	cartasHtml.innerHTML = partida.getCartas()		
 }
