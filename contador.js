@@ -86,7 +86,6 @@ alert("Nueva partida")
 const partida = new Partida()
 
 while(true) {
-	console.log(document.getElementById('ronda').innerHTML)
 	rondaHtml.innerHTML = partida.getRonda()
 	energiaHtml.innerHTML = partida.getEnergia()
 	cartasHtml.innerHTML = partida.getCartas()
