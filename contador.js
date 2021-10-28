@@ -77,10 +77,20 @@ class Partida {
 	}
 }
 
+const rondaHtml = document.getElementById('ronda')
+const energiaHtml = document.getElementById('energia')
+const cartasHtml = document.getElementById('cartas')
+
 // Simulador de partida
 alert("Nueva partida")
 const partida = new Partida()
+
 while(true) {
+	console.log(document.getElementById('ronda').innerHTML)
+	rondaHtml.innerHTML = partida.getRonda()
+	energiaHtml.innerHTML = partida.getEnergia()
+	cartasHtml.innerHTML = partida.getCartas()
+
 	alert(`Ronda: ${partida.getRonda()}\nEnergía: ${partida.getEnergia()}\nCartas: ${partida.getCartas()}`)
 	let energia = Number(prompt("Ingrese energía a sumar"))
 	let cartas = Number(prompt("Ingrese cartas a sumar"))
