@@ -1,5 +1,5 @@
 html {
-  font-size: 100%;
+  font-size: 70%;
   font-family: 'Roboto', sans-serif; 
 }
 
@@ -19,6 +19,7 @@ ul {
 }
 
 /* Header  */
+
 .header {
 	background-color: #cc6600; 
 }
@@ -39,7 +40,7 @@ ul {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 70px; 
+	width: 50px; 
 }
 
 .menu {
@@ -89,7 +90,8 @@ ul {
 	} 
 }
 
-/* Home */ 
+/* Home */
+
 .main_home {
 	background-image: url("img/bg2.jpeg");
 	background-size: cover;
@@ -103,6 +105,7 @@ ul {
 }
 
 /* Contador de energía */
+
 .title_contador {
 	color: white;
 	text-align: center;
@@ -158,10 +161,4 @@ table, td, th {
 
 th, td {
   padding: 5px; 
-}
-
-/* Calculadora de daño*/
-.main_calculadora {
-	background-size: cover;
-	height: 100vh;
 }

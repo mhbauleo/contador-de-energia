@@ -83,7 +83,12 @@ class Partida {
 	}
 }
 
+// Variables
+
 const partida = new Partida()
+let cartasRival = new Map()
+
+// Elementos html modificables
 
 const rondaHtml = document.getElementById('ronda')
 const energiaHtml = document.getElementById('energia')
@@ -91,6 +96,24 @@ const cartasHtml = document.getElementById('cartas')
 
 const energiaModificarHtml = document.getElementById('energia-modificar')
 const cartasModificarHtml = document.getElementById('cartas-modificar')
+
+// Cartas rival
+
+const boca1 = document.getElementById('boca-1')
+const boca2 = document.getElementById('boca-2')
+const boca3 = document.getElementById('boca-3')
+
+const cuerno1 = document.getElementById('cuerno-1')
+const cuerno2 = document.getElementById('cuerno-2')
+const cuerno3 = document.getElementById('cuerno-3')
+
+const espalda1 = document.getElementById('espalda-1')
+const espalda2 = document.getElementById('espalda-2')
+const espalda3 = document.getElementById('espalda-3')
+
+const cola1 = document.getElementById('cola-1')
+const cola2 = document.getElementById('cola-2')
+const cola3 = document.getElementById('cola-3')
 
 // Botones 
 
@@ -102,11 +125,66 @@ const btnCartasMas = document.getElementById('btn-cartas-mas')
 const btnSiguiente = document.getElementById('siguiente')
 const btnNueva = document.getElementById('nueva')
 
+// Funciones
+
+function reiniciarCartasRival(cartasRival) {
+	cartasRival.set('boca-1', 0)
+	cartasRival.set('boca-2', 0)
+	cartasRival.set('boca-3', 0)
+
+	cartasRival.set('cuerno-1', 0)
+	cartasRival.set('cuerno-2', 0)
+	cartasRival.set('cuerno-3', 0)
+
+	cartasRival.set('espalda-1', 0)
+	cartasRival.set('espalda-2', 0)
+	cartasRival.set('espalda-3', 0)
+
+	cartasRival.set('cola-1', 0)
+	cartasRival.set('cola-2', 0)
+	cartasRival.set('cola-3', 0)
+
+	boca1.innerHTML = 0
+	boca2.innerHTML = 0
+	boca3.innerHTML = 0 
+
+	cuerno1.innerHTML = 0
+	cuerno2.innerHTML = 0
+	cuerno3.innerHTML = 0
+
+	espalda1.innerHTML = 0
+	espalda2.innerHTML = 0
+	espalda3.innerHTML = 0
+
+	cola1.innerHTML = 0
+	cola2.innerHTML = 0
+	cola3.innerHTML = 0
+}
+
+function calcularCartasUsadas(cartasRival) {
+	let cartasUsadas = 0
+
+	cartasRival.forEach((valor,clave)=> {
+		let diferencia = Number(document.getElementById(clave).innerHTML) - valor
+		cartasUsadas += diferencia
+	})
+	return cartasUsadas
+}
+
+function actualizarCartasRival(cartasRival) {
+	cartasRival.forEach((valor,clave)=> {
+		cartasRival.set(clave, Number(document.getElementById(clave).innerHTML))
+	})
+}
+
+
 // Modificador de energia
 
 btnEnergiaMenos.onclick = () => {
 	let anterior = Number(energiaModificarHtml.innerHTML)
-	energiaModificarHtml.innerHTML = anterior - 1
+	if(-anterior < partida.getEnergia()) {
+		energiaModificarHtml.innerHTML = anterior - 1
+	}
 }
 
 btnEnergiaMas.onclick = () => {
@@ -118,7 +196,9 @@ btnEnergiaMas.onclick = () => {
 
 btnCartasMenos.onclick = () => {
 	let anterior = Number(cartasModificarHtml.innerHTML)
-	cartasModificarHtml.innerHTML = anterior - 1	
+	if(-anterior < partida.getCartas()) {
+		cartasModificarHtml.innerHTML = anterior - 1
+	}
 }
 
 btnCartasMas.onclick = () => {
@@ -132,7 +212,8 @@ btnSiguiente.onclick = () => {
 	let energia = Number(energiaModificarHtml.innerHTML)
 	let cartas = Number(cartasModificarHtml.innerHTML)
 
-	partida.siguienteRonda(energia, cartas)
+	partida.siguienteRonda(energia, cartas - calcularCartasUsadas(cartasRival))
+	actualizarCartasRival(cartasRival)
 
 	energiaModificarHtml.innerHTML = 0
 	cartasModificarHtml.innerHTML = 0
@@ -152,5 +233,18 @@ btnNueva.onclick = () => {
 
 	rondaHtml.innerHTML = partida.getRonda()
 	energiaHtml.innerHTML = partida.getEnergia()
-	cartasHtml.innerHTML = partida.getCartas()		
+	cartasHtml.innerHTML = partida.getCartas()
+
+	reiniciarCartasRival(cartasRival)
 }
+
+// Cartas usadas del rival
+
+function cartaUsada(clicked_id) {
+	let anterior = Number(document.getElementById(clicked_id).innerHTML)
+	document.getElementById(clicked_id).innerHTML = (anterior + 1)%3
+}
+
+// Inicializar diccionario de cartas del rival
+
+reiniciarCartasRival(cartasRival)
