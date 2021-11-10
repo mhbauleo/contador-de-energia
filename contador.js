@@ -88,43 +88,6 @@ class Partida {
 const partida = new Partida()
 let cartasRival = new Map()
 
-// Elementos html modificables
-
-const rondaHtml = document.getElementById('ronda')
-const energiaHtml = document.getElementById('energia')
-const cartasHtml = document.getElementById('cartas')
-
-const energiaModificarHtml = document.getElementById('energia-modificar')
-const cartasModificarHtml = document.getElementById('cartas-modificar')
-
-// Cartas rival
-
-const boca1 = document.getElementById('boca-1')
-const boca2 = document.getElementById('boca-2')
-const boca3 = document.getElementById('boca-3')
-
-const cuerno1 = document.getElementById('cuerno-1')
-const cuerno2 = document.getElementById('cuerno-2')
-const cuerno3 = document.getElementById('cuerno-3')
-
-const espalda1 = document.getElementById('espalda-1')
-const espalda2 = document.getElementById('espalda-2')
-const espalda3 = document.getElementById('espalda-3')
-
-const cola1 = document.getElementById('cola-1')
-const cola2 = document.getElementById('cola-2')
-const cola3 = document.getElementById('cola-3')
-
-// Botones 
-
-const btnEnergiaMenos = document.getElementById('btn-energia-menos')
-const btnEnergiaMas = document.getElementById('btn-energia-mas')
-const btnCartasMenos = document.getElementById('btn-cartas-menos')
-const btnCartasMas = document.getElementById('btn-cartas-mas')
-
-const btnSiguiente = document.getElementById('siguiente')
-const btnNueva = document.getElementById('nueva')
-
 // Funciones
 
 function reiniciarCartasRival(cartasRival) {
@@ -144,21 +107,21 @@ function reiniciarCartasRival(cartasRival) {
 	cartasRival.set('cola-2', 0)
 	cartasRival.set('cola-3', 0)
 
-	boca1.innerHTML = 0
-	boca2.innerHTML = 0
-	boca3.innerHTML = 0 
+	$('#boca-1').html(0)
+	$('#boca-2').html(0)
+	$('#boca-3').html(0)
 
-	cuerno1.innerHTML = 0
-	cuerno2.innerHTML = 0
-	cuerno3.innerHTML = 0
+	$('#cuerno-1').html(0)
+	$('#cuerno-2').html(0)
+	$('#cuerno-3').html(0)
 
-	espalda1.innerHTML = 0
-	espalda2.innerHTML = 0
-	espalda3.innerHTML = 0
+	$('#espalda-1').html(0)
+	$('#espalda-2').html(0)
+	$('#espalda-3').html(0)
 
-	cola1.innerHTML = 0
-	cola2.innerHTML = 0
-	cola3.innerHTML = 0
+	$('#cola-1').html(0)
+	$('#cola-2').html(0)
+	$('#cola-3').html(0)
 }
 
 function calcularCartasUsadas(cartasRival) {
@@ -177,66 +140,65 @@ function actualizarCartasRival(cartasRival) {
 	})
 }
 
-
 // Modificador de energia
 
-btnEnergiaMenos.onclick = () => {
-	let anterior = Number(energiaModificarHtml.innerHTML)
+$('#btn-energia-menos').click(function () {
+	let anterior = Number($('#energia-modificar').html())
 	if(-anterior < partida.getEnergia()) {
-		energiaModificarHtml.innerHTML = anterior - 1
+		$('#energia-modificar').html(anterior - 1)
 	}
-}
+})
 
-btnEnergiaMas.onclick = () => {
-	let anterior = Number(energiaModificarHtml.innerHTML)
-	energiaModificarHtml.innerHTML = anterior + 1	
-}
+$('#btn-energia-mas').click(function () {
+	let anterior = Number($('#energia-modificar').html())
+	$('#energia-modificar').html(anterior + 1)
+})
 
 // Modificador de cartas
 
-btnCartasMenos.onclick = () => {
-	let anterior = Number(cartasModificarHtml.innerHTML)
+$('#btn-cartas-menos').click(function () {
+	let anterior = Number($('#cartas-modificar').html())
 	if(-anterior < partida.getCartas()) {
-		cartasModificarHtml.innerHTML = anterior - 1
+		$('#cartas-modificar').html(anterior - 1)
 	}
-}
+})
 
-btnCartasMas.onclick = () => {
-	let anterior = Number(cartasModificarHtml.innerHTML)
-	cartasModificarHtml.innerHTML = anterior + 1		
-}
+$('#btn-cartas-mas').click(function () {
+	let anterior = Number($('#cartas-modificar').html())
+	$('#cartas-modificar').html(anterior + 1)
+})
 
 // Siguiente ronda
 
-btnSiguiente.onclick = () => {
-	let energia = Number(energiaModificarHtml.innerHTML)
-	let cartas = Number(cartasModificarHtml.innerHTML)
+$('#siguiente').click(function () {
+	let energia = Number($('#energia-modificar').html())
+	let cartas = Number($('#cartas-modificar').html())
 
 	partida.siguienteRonda(energia, cartas - calcularCartasUsadas(cartasRival))
 	actualizarCartasRival(cartasRival)
 
-	energiaModificarHtml.innerHTML = 0
-	cartasModificarHtml.innerHTML = 0
+	$('#energia-modificar').html(0)
+	$('#cartas-modificar').html(0)
 
-	rondaHtml.innerHTML = partida.getRonda()
-	energiaHtml.innerHTML = partida.getEnergia()
-	cartasHtml.innerHTML = partida.getCartas()
-}
+	$('#ronda').html(partida.getRonda())
+	$('#energia').html(partida.getEnergia())
+	$('#cartas').html(partida.getCartas())
+})
 
 // Nueva partida
 
-btnNueva.onclick = () => {
+$('#nueva').click(function () {
 	partida.reiniciar()
 
-	energiaModificarHtml.innerHTML = 0
-	cartasModificarHtml.innerHTML = 0
+	$('#energia-modificar').html(0)
+	$('#cartas-modificar').html(0)
 
-	rondaHtml.innerHTML = partida.getRonda()
-	energiaHtml.innerHTML = partida.getEnergia()
-	cartasHtml.innerHTML = partida.getCartas()
+	$('#ronda').html(partida.getRonda())
+	$('#energia').html(partida.getEnergia())
+	$('#cartas').html(partida.getCartas())
 
 	reiniciarCartasRival(cartasRival)
-}
+})
 
 // Cartas usadas del rival
 
