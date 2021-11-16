@@ -9,8 +9,6 @@ const CARTAS_MAXIMA = 12
 const ENERGIA_POR_RONDA = 2
 const CARTAS_POR_RONDA = 3
 
-const URL_PARTES = "partes.json"
-
 class Energia {
 	constructor() {
 		this.cantidad = ENERGIA_INICIAL
@@ -93,20 +91,21 @@ let cartasRival = new Map()
 // Funciones
 
 function reiniciarCartasRival(cartasRival) {
-	$.getJSON( URL_PARTES, (response, status) => {
+	cartasRival.set('boca-1', 0)
+	cartasRival.set('boca-2', 0)
+	cartasRival.set('boca-3', 0)
 
-		if( status !== 'success') {
-			throw new Error('error')
-		}
+	cartasRival.set('cuerno-1', 0)
+	cartasRival.set('cuerno-2', 0)
+	cartasRival.set('cuerno-3', 0)
 
-		for (const article of response) {
-			cartasRival.set(article.boca, 0)
-			cartasRival.set(article.cuerno, 0)
-			cartasRival.set(article.espalda, 0)
-			cartasRival.set(article.cola, 0)
-			console.log(article)
-		}
-	})
+	cartasRival.set('espalda-1', 0)
+	cartasRival.set('espalda-2', 0)
+	cartasRival.set('espalda-3', 0)
+
+	cartasRival.set('cola-1', 0)
+	cartasRival.set('cola-2', 0)
+	cartasRival.set('cola-3', 0)
 
 	$('#boca-1').html(0)
 	$('#boca-2').html(0)
