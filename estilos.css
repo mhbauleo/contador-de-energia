@@ -183,3 +183,37 @@ th {
 	color: white;
 	background-color: #5cbfea;
 }
+
+/* Desempeño */
+
+#desempenio {
+	padding-bottom: 10px;
+}
+
+#desempenio-botones {
+	display: flex;
+	justify-content: center;
+}
+
+#desempenio-elementos {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#slp {
+	background-color: #f0c66e;
+}
+
+#victorias {
+	background-color: #f0c66e;
+}
+
+#derrotas {
+	background-color: #f0c66e;
+}
+
+#empates {
+	background-color: #f0c66e;
+}
