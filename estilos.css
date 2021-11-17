@@ -112,6 +112,10 @@ ul {
 
 /* Contador de energía */
 
+.main_contador {
+	height: 100vh;
+}
+
 .title_contador {
 	color: white;
 	text-align: center;
