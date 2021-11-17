@@ -104,6 +104,12 @@ ul {
 	padding-top: 10px;
 }
 
+.axs_info {
+	color: white;
+	font-size: 2em;
+	text-align: center;
+}
+
 /* Contador de energía */
 
 .title_contador {
