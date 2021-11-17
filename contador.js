@@ -142,35 +142,35 @@ function actualizarCartasRival(cartasRival) {
 
 // Modificador de energia
 
-$('#btn-energia-menos').click(function () {
+$('#btn-energia-menos').on('click', function () {
 	let anterior = Number($('#energia-modificar').html())
 	if(-anterior < partida.getEnergia()) {
 		$('#energia-modificar').html(anterior - 1)
 	}
 })
 
-$('#btn-energia-mas').click(function () {
+$('#btn-energia-mas').on('click', function () {
 	let anterior = Number($('#energia-modificar').html())
 	$('#energia-modificar').html(anterior + 1)
 })
 
 // Modificador de cartas
 
-$('#btn-cartas-menos').click(function () {
+$('#btn-cartas-menos').on('click', function () {
 	let anterior = Number($('#cartas-modificar').html())
 	if(-anterior < partida.getCartas()) {
 		$('#cartas-modificar').html(anterior - 1)
 	}
 })
 
-$('#btn-cartas-mas').click(function () {
+$('#btn-cartas-mas').on('click', function () {
 	let anterior = Number($('#cartas-modificar').html())
 	$('#cartas-modificar').html(anterior + 1)
 })
 
 // Siguiente ronda
 
-$('#siguiente').click(function () {
+$('#siguiente').on('click', function () {
 	let energia = Number($('#energia-modificar').html())
 	let cartas = Number($('#cartas-modificar').html())
 
@@ -187,7 +187,7 @@ $('#siguiente').click(function () {
 
 // Nueva partida
 
-$('#nueva').click(function () {
+$('#nueva').on('click', function () {
 	partida.reiniciar()
 
 	$('#energia-modificar').html(0)
